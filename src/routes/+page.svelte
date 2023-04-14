@@ -1,15 +1,23 @@
-<p>you're not logged in!</p>
+<script lang="ts">
+  import type { PageServerData } from './$types';
 
-<form method="POST" action="/login">
-  <input type="text" name="username" id="username" placeholder="username">
-  <input type="password" name="password" id="password" placeholder="password">
-  <button type="submit">log in</button>
-</form>
+  export let data: PageServerData;
+</script>
 
-<p>don't have an account?</p>
+<h3>library</h3>
 
-<form method="POST" action="/register">
-  <input type="text" name="username" id="username" placeholder="username">
-  <input type="password" name="password" id="password" placeholder="password">
-  <button type="submit">register</button>
-</form>
+<table>
+  <tr>
+    <th>document</th>
+    <th>author</th>
+    <th>year</th>
+    <th>link</th>
+  </tr>
+
+  {#each data.docs as doc}
+    <td>{doc.title}</td>
+    <td>{doc.author}</td>
+    <td>n/a</td>
+    <td><a href={doc.url} target="_blank" rel="noopener noreferrer">PDF</a></td>
+  {/each}
+</table>
